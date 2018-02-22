@@ -49,15 +49,6 @@ global_overrides:
         group_binds:
           - neutron_linuxbridge_agent
     - network:
-        container_bridge: "br-vlan"
-        container_type: "veth"
-        container_interface: "eth4"
-        type: "vlan"
-        range: "1:1"
-        net_name: "vlan"
-        group_binds:
-          - neutron_linuxbridge_agent
-    - network:
         container_bridge: "br-storage"
         container_type: "veth"
         container_interface: "eth2"
@@ -77,11 +68,13 @@ global_overrides:
 shared-infra_hosts:
   controller-01:
     ip: 172.29.236.10
+  controller-02:
+    ip: 172.29.236.10
 
 # repository (apt cache, python packages, etc)
 repo-infra_hosts:
-  controller-02:
-    ip: 172.29.236.11
+  controller-01:
+    ip: 172.29.236.10
 
 # load balancer
 haproxy_hosts:
@@ -116,6 +109,8 @@ compute-infra_hosts:
 orchestration_hosts:
   controller-01:
     ip: 172.29.236.10
+  controller-02:
+    ip: 172.29.236.11
 
 # horizon
 dashboard_hosts:
@@ -124,8 +119,8 @@ dashboard_hosts:
 
 # neutron server, agents (L3, etc)
 network_hosts:
-  controller-02:
-    ip: 172.29.236.11
+  controller-01:
+    ip: 172.29.236.10
 
 # nova hypervisors
 compute_hosts:
