@@ -48,7 +48,7 @@ bridge_ports bond0.236
 bridge_stp off
 
 auto br-vxlan
-iface br-vlan inet static
+iface br-vxlan inet static
 address 172.29.240.11
 netmask 255.255.255.0
 bridge_ports bond1.240
