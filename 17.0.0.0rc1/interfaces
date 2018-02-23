@@ -47,6 +47,11 @@ netmask 255.255.255.0
 bridge_ports bond0.236
 bridge_stp off
 
+#auto br-mgmt:0
+#iface br-mgmt:0 inet static
+#address 172.29.236.9 # should be one segment of br-mgmt
+#netmask 255.255.255.0
+
 auto br-vxlan
 iface br-vxlan inet static
 address 172.29.240.11
