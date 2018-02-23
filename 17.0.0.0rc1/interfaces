@@ -1,0 +1,66 @@
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# The primary network interface
+auto eth0
+iface eth0 inet dhcp
+dns-nameserver 8.8.8.8
+
+auto bond0
+iface 192.168.100.12
+netmask 255.255.255.0
+#gateway 192.168.100.1
+
+auto eth1
+iface eth1 inet manual
+bond-master bond0
+bond-primary eth1
+
+auto eth2
+iface eth2 inet manual
+bond-master bond0
+
+auto eth3
+iface eth1 inet manual
+bond-master bond1
+bond-primary eth3
+
+auto eth4
+iface eth4 inet manual
+bond-master bond1
+
+auto bond0.236
+iface bond0.236 inet manual
+auto bond1.240
+iface bond1.240 inet manual
+auto bond0.244
+iface bond0.244 inet manual
+
+auto br-mgmt
+iface br-mgmt inet static
+address 172.29.236.12
+netmask 255.255.255.0
+bridge_ports bond0.236
+bridge_stp off
+
+auto br-vxlan
+iface br-vlan inet static
+address 172.29.240.12
+netmask 255.255.255.0
+bridge_ports bond1.240
+bridge_stp off
+
+auto br-vlan
+iface br-vlan inet manual
+bridge_ports bond1
+bridge_stp off
+
+auto br-vlan
+iface br-vlan inet static
+address 172.29.236.12
+netmask 255.255.255.0
+bridge_ports bond0.244
+bridge_stp off
