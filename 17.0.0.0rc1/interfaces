@@ -10,9 +10,10 @@ iface eth0 inet dhcp
 dns-nameserver 8.8.8.8
 
 auto bond0
-iface 192.168.100.12
+iface bond0 inet static
+address 192.168.100.11
 netmask 255.255.255.0
-#gateway 192.168.100.1
+gateway 192.168.100.1
 
 auto eth1
 iface eth1 inet manual
@@ -41,14 +42,14 @@ iface bond0.244 inet manual
 
 auto br-mgmt
 iface br-mgmt inet static
-address 172.29.236.12
+address 172.29.236.11
 netmask 255.255.255.0
 bridge_ports bond0.236
 bridge_stp off
 
 auto br-vxlan
 iface br-vlan inet static
-address 172.29.240.12
+address 172.29.240.11
 netmask 255.255.255.0
 bridge_ports bond1.240
 bridge_stp off
@@ -58,9 +59,9 @@ iface br-vlan inet manual
 bridge_ports bond1
 bridge_stp off
 
-auto br-vlan
-iface br-vlan inet static
-address 172.29.236.12
+auto br-storage
+iface br-storage inet static
+address 172.29.240.11
 netmask 255.255.255.0
 bridge_ports bond0.244
 bridge_stp off
