@@ -68,8 +68,6 @@ global_overrides:
 shared-infra_hosts:
   controller-01:
     ip: 172.29.236.10
-  controller-02:
-    ip: 172.29.236.10
 
 # repository (apt cache, python packages, etc)
 repo-infra_hosts:
@@ -92,13 +90,13 @@ identity_hosts:
 
 # cinder api services
 storage-infra_hosts:
-  controller-03:
-    ip: 172.29.236.12
+  storage-01:
+    ip: 172.29.236.11
 
 # glance
 image_hosts:
-  controller-03:
-    ip: 172.29.236.12
+  storage-01:
+    ip: 172.29.236.11
 
 # nova api, conductor, etc services
 compute-infra_hosts:
@@ -109,8 +107,6 @@ compute-infra_hosts:
 orchestration_hosts:
   controller-01:
     ip: 172.29.236.10
-  controller-02:
-    ip: 172.29.236.11
 
 # horizon
 dashboard_hosts:
@@ -129,8 +125,8 @@ compute_hosts:
 
 # cinder storage host (LVM-backed)
 storage_hosts:
-  controller-03:
-    ip: 172.29.236.12
+  storage-01:
+    ip: 172.29.236.11
     container_vars:
       cinder_backends:
         limit_container_types: cinder_volume
@@ -138,4 +134,4 @@ storage_hosts:
           volume_group: cinder-volumes
           volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
           volume_backend_name: LVM_iSCSI
-          iscsi_ip_address: "172.29.244.12"
+          iscsi_ip_address: "172.29.244.11"
